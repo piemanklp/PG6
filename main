@@ -73,7 +73,7 @@ void fillArray(int myArray[], int myArraySize){
     
     for ( int i = 0; i < myArraySize; i++){ //Traverse array
         
-        myArray[i] = ((random() % 100) + 1); //Store random int
+        myArray[i] = ((rand() % 100) + 1); //Store random int
     }
     
     return;
