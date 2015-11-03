@@ -1,0 +1,93 @@
+/*
+ Author: Michael Campos (#5) and Justin Couture (#10)
+ Due Date: 4 November 2015
+ Programming Assignment Number 6
+ Fall 2015 - CS 3358 - Section 3
+ 
+ Instructor: Husain Gholoom
+ 
+ The purpose of this program is........
+ 
+ to perform recursive operation on an array
+ */
+
+#include <iostream>
+
+using namespace std;
+
+//******************************************************************************
+//PROTOTYPES
+int getArraySize(); //Gets user input for array size
+void fillArray(int[], int); //Fills array with random values between 1 and 100
+void showArrayContent(int [], int); //Show the contents of the array
+//******************************************************************************
+
+
+//******************************************************************************
+//MAIN
+int main() {
+    
+    //Set array size
+    int theArraySize = getArraySize();
+    
+    //Create array
+    int theArray[theArraySize]; //Declare array
+    
+    //Fill array
+    fillArray(theArray, theArraySize);
+    
+    //Show array content
+    showArrayContent(theArray, theArraySize);
+    
+    
+    
+    
+    return 0;
+}
+//******************************************************************************
+
+
+//******************************************************************************
+//FUNCTIONS
+
+//******************************************************************************
+//  Get user input for array size
+//******************************************************************************
+
+int getArraySize(){
+    
+    int arraySize; //Hold array size variable
+    
+    cout << "What size is your array?\nArray Size: "; //Prompt user for input
+    cin >> arraySize; //Take input
+    cout << endl; //Formatting
+    
+    return arraySize; //Return array size
+}
+
+
+//******************************************************************************
+//  Fill the array with random integers between 1 and 100.
+//******************************************************************************
+void fillArray(int myArray[], int myArraySize){
+    
+    for ( int i = 0; i < myArraySize; i++){ //Traverse array
+        
+        myArray[i] = ((random() % 100) + 1); //Store random int
+    }
+    
+    return;
+}
+
+
+//******************************************************************************
+//  Display the content of the array
+//******************************************************************************
+void showArrayContent(int myArray[], int myArraySize){
+    
+    for(int j = 0; j < myArraySize; j++){
+        cout << "Index " << j << ": " << myArray[j] << endl;
+        }
+
+    return;
+}
