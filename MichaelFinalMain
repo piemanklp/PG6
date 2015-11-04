@@ -1,0 +1,170 @@
+/*
+ Author: Michael Campos (#5) and Justin Couture (#10)
+ Due Date: 4 November 2015
+ Programming Assignment Number 6
+ Fall 2015 - CS 3358 - Section 3
+ 
+ Instructor: Husain Gholoom
+ 
+ The purpose of this program is........
+ 
+ to perform recursive operation on an array
+ */
+
+#include <iostream>
+
+using namespace std;
+
+//******************************************************************************
+//PROTOTYPES
+int getArraySize(); //Gets user input for array size
+void fillArray(int[], int); //Fills array with random values between 1 and 100
+void showArrayContent(int [], int); //Show the contents of the array
+void tableOfSquares(int [], int, int); //Shows squares of array nums in order
+int Power(int, unsigned int); //raise a number to a power
+bool isMember(int[], int, int);
+//******************************************************************************
+
+
+//******************************************************************************
+//MAIN
+int main() {
+    
+    //Set array size
+    int theArraySize = getArraySize();
+    
+    //Create array
+    int theArray[theArraySize];
+    
+    //Fill array
+    fillArray(theArray, theArraySize);
+    
+    //Show array content
+    showArrayContent(theArray, theArraySize);
+    
+    //Table Of Squares
+    tableOfSquares(theArray, theArraySize, 1);
+    
+    //Power
+    int lastValue = theArray[theArraySize - 1];
+    cout<<lastValue<<" raised to a power of 2 is "<<Power(lastValue, 2)<<endl;
+    
+    
+    //Is Member
+    if(isMember(theArray, theArraySize, theArray[0])){
+        cout << "The array contains " << theArray[0]<<endl;
+    }
+    
+    if (!isMember(theArray, theArraySize, theArraySize+5)){
+        cout << "The array does not contain " << theArraySize+5<<endl;
+    };
+    
+    return 0;
+}
+//******************************************************************************
+
+
+//******************************************************************************
+//FUNCTIONS
+
+//******************************************************************************
+//  Get user input for array size
+//******************************************************************************
+
+int getArraySize(){
+    
+    int arraySize; //Hold array size variable
+    
+    cout << "What size is your array?\nArray Size: "; //Prompt user for input
+    cin >> arraySize; //Take input
+    cout << endl; //Formatting
+    
+    return arraySize; //Return array size
+}
+
+
+//******************************************************************************
+//  Fill the array with random integers between 1 and 100.
+//******************************************************************************
+void fillArray(int myArray[], int myArraySize){
+    
+    int randomInt;
+    
+    for ( int i = 0; i < myArraySize; i++){ //Traverse array
+        
+        randomInt = ((rand() % 100) + 1); //Store random int
+        myArray[i] = randomInt;
+    }
+    
+    return;
+}
+
+
+//******************************************************************************
+//  Display the content of the array
+//******************************************************************************
+void showArrayContent(int myArray[], int myArraySize){
+    
+    for(int j = 0; j < myArraySize; j++){
+        cout << "Index " << j << ": " << myArray[j] << endl;
+        }
+
+    return;
+}
+
+//******************************************************************************
+//  Display the squares of the array's content from 1 to array[0]
+//******************************************************************************
+void tableOfSquares(int myArray[], int myArraySize, int x){
+    
+    if (x == myArray[0]) {
+        //Check if at the first integer in the array
+        cout << "The square of " << x << " is " << x*x << endl;
+        return;
+    }
+    
+    cout << "The square of " << x << " is " << x*x << endl; //output square
+    x++; //Increment x
+    tableOfSquares(myArray, myArraySize, x); //Recursion
+    
+    return;
+}
+
+//******************************************************************************
+//  Raise a number to a power
+//******************************************************************************
+int Power(int myNumber, unsigned int myPower){
+    
+   if (myPower == 1) { //Recursion stopper
+        return myNumber;
+    }
+    else if (myPower == 0) { //Handles 0 as a power.
+        cout << "An error occured!" << endl;
+        return myNumber;
+    }
+    
+    myNumber *= myNumber; //Square once
+    
+    --myPower; //Decrement the power once since myNumber is squared once
+    
+    Power(myNumber, myPower); //Recursion
+    return myNumber;
+}
+
+//******************************************************************************
+// Find smallest integer in an array
+//******************************************************************************
+bool isMember(int myArray[], int myArraySize, int x){
+    
+    
+    if (x == myArray[myArraySize-1]) {
+        return true;
+    }
+    else if (myArraySize == 0){
+        return false;
+    }
+    
+    
+    --myArraySize;
+    return isMember(myArray, myArraySize, x);
+}
