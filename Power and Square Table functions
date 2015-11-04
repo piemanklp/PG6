@@ -1,0 +1,38 @@
+//******************************************************************************
+//  Display the squares of the array's content from 1 to array[0]
+//******************************************************************************
+void tableOfSquares(int myArray[], int myArraySize, int x){
+    
+    if (x == myArray[0]) {
+        //Check if at the first integer in the array
+        cout << "The square of " << x << " is " << x*x << endl;
+        return;
+    }
+    
+    cout << "The square of " << x << " is " << x*x << endl; //output square
+    x++; //Increment x
+    tableOfSquares(myArray, myArraySize, x); //Recursion
+    
+    return;
+}
+
+//******************************************************************************
+//  Raise a number to a power
+//******************************************************************************
+int Power(int myNumber, unsigned int myPower){
+    
+   if (myPower == 1) { //Recursion stopper
+        return myNumber;
+    }
+    else if (myPower == 0) { //Handles 0 as a power.
+        cout << "An error occured!" << endl;
+        return myNumber;
+    }
+    
+    myNumber *= myNumber; //Square once
+    
+    --myPower; //Decrement the power once since myNumber is squared once
+    
+    Power(myNumber, myPower); //Recursion
+    return myNumber;
+}
